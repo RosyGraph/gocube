@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"regexp"
 	"time"
 )
 
@@ -23,6 +24,7 @@ type Card struct {
 	Name     string  `json:"name"`
 	CMC      float64 `json:"cmc"`
 	ManaCost string  `json:manaCost`
+	Text     string  `json:text`
 }
 
 // type Card struct {
@@ -52,6 +54,8 @@ func main() {
 	cardnames := []string{
 		"Pyramids",
 		"Farmstead",
+		"Tundra",
+		"Gitaxian Probe",
 	}
 	ch := make(chan string)
 	for _, cardname := range cardnames {
@@ -68,7 +72,8 @@ func main() {
 func fetch(url string, ch chan<- string) {
 	start := time.Now()
 	resp, err := http.Get(url)
-	defer resp.Body.Close() // don't leak resources
+	defer resp.Body.Close()
+
 	if err != nil {
 		ch <- fmt.Sprint(err) // send to channel ch
 		return
@@ -80,19 +85,24 @@ func fetch(url string, ch chan<- string) {
 		return
 	}
 
-	// var cardnames []struct{ cards Card }
 	var s Cards
-
 	err = json.Unmarshal(buffer, &s)
 	if err != nil {
 		ch <- fmt.Sprint(err) // send to channel ch
 		return
 	}
-	// if err := json.NewDecoder(resp.Body).Decode(&cardnames); err != nil {
-	// ch <- fmt.Sprint(err) // send to channel ch
-	// return
-	// }
 
 	elapsed := time.Since(start).Seconds()
-	ch <- fmt.Sprintf("%.2fs\t%s:\n\t\tcmc: %v\n\t\tmanacost: %s", elapsed, s.CardNames[0].Name, s.CardNames[0].CMC, s.CardNames[0].ManaCost)
+	card := s.CardNames[0]
+	colors := colorID(card)
+	ch <- fmt.Sprintf("%.2fs\t%s:\n\t\tcmc: %v\n\t\tmanacost: %s\n\tcolor identity:%v", elapsed, card.Name, card.CMC, card.ManaCost, colors)
+}
+
+func colorID(c Card) []string {
+	colors := make([]string, 5)
+	p := `\{([A-Z]/)*W([A-Z]/)*\}`
+	if regexp.MatchString(p, c.ManaCost) || regex.MatchString(p, c.Text) {
+		colors := colors.append("W")
+	}
+	return colors
 }
