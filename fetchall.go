@@ -11,6 +11,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -57,36 +58,82 @@ type Drafter struct {
 // legalities   []*Legalities
 // id           string
 // }
+var wg sync.WaitGroup
 
 func main() {
 	start := time.Now()
-	cardnames := processDraftPicks("RosyGraph")
-	picks := make([]Card, 0)
+	cardnames := []string{
+		"Plains",
+		"Island",
+		"Swamp",
+		"Mountain",
+		"Forest",
+	}
+	ch := make(chan Card, len(cardnames))
 
-	ch := make(chan Card)
 	for _, cardname := range cardnames {
-		query := url.QueryEscape(cardname)
-		url := fmt.Sprintf("https://api.magicthegathering.io/v1/cards?name=%q", query)
-		go fetch(url, ch) // start a goroutine
+		q := fmt.Sprintf("https://api.magicthegathering.io/v1/cards?name=%q", url.QueryEscape(cardname))
+		go func(s string) {
+			defer wg.Done()
+			for i := 0; i < 5; i++ {
+				if resp, err := http.Get(s); err != nil {
+					fmt.Printf("%s: %s\n", s, err.Error())
+					return
+				} else {
+					if resp.StatusCode == 200 {
+						buffer, err := ioutil.ReadAll(resp.Body)
+						if err != nil {
+							fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
+							continue
+						}
+
+						var cards Cards
+						err = json.Unmarshal(buffer, &cards)
+						if err != nil {
+							fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", cards.CardNames[0].Name, i, resp.Status)
+							continue
+						}
+
+						if len(cards.CardNames) == 0 {
+							fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", cards.CardNames[0].Name, i, cardname)
+							continue
+						}
+						ch <- cards.CardNames[0]
+						return
+					} else {
+						fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
+					}
+				}
+			}
+			fmt.Printf("[ERROR]\tgiving up on %s\n", s)
+		}(q)
+		wg.Add(1)
 	}
-	for range cardnames {
-		picks = append(picks, <-ch)
+	wg.Wait()
+	close(ch)
+	fmt.Printf("total time: %.2f\n", time.Since(start).Seconds())
+
+	var cmc float64
+	for v := range ch {
+		fmt.Println(v.Name)
+		cmc += v.CMC
 	}
-	fmt.Printf("%v\n", picks)
-	fmt.Printf("%.2fs elapsed\n", time.Since(start).Seconds())
+	fmt.Printf("total cmc: %.2f\n", cmc)
 }
 
 func fetch(url string, ch chan<- Card) {
 	resp, err := http.Get(url)
+
 	if err != nil {
+		fmt.Println(err.Error())
 		ch <- Card{Name: url, Text: err.Error()}
 		return
 	}
+	defer resp.Body.Close()
 
 	buffer, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		ch <- Card{Name: url, Text: err.Error()}
-		resp.Body.Close()
 		return
 	}
 
@@ -94,20 +141,17 @@ func fetch(url string, ch chan<- Card) {
 	err = json.Unmarshal(buffer, &s)
 	if err != nil {
 		ch <- Card{Name: url, Text: err.Error()}
-		resp.Body.Close()
 		return
 	}
 
 	if len(s.CardNames) == 0 {
-		ch <- Card{Name: url, Text: err.Error()}
-		resp.Body.Close()
+		ch <- Card{Name: url, Text: fmt.Sprintf("could not find %s", url)}
 		return
 	}
 
 	card := s.CardNames[0]
 	card.ColorID = colorID(card)
 	ch <- card
-	resp.Body.Close()
 }
 
 func colorID(c Card) []string {
@@ -141,11 +185,11 @@ func processDraftPicks(drafter string) []string {
 			continue
 		}
 		f, err := os.Open("draftlogs/" + log.Name())
-		defer f.Close()
 
 		if err != nil {
 			panic(err)
 		}
+		defer f.Close()
 
 		sc := bufio.NewScanner(f)
 		for sc.Scan() {
