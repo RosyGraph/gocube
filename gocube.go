@@ -1,4 +1,4 @@
-// Fetchall fetches URLs in parallel and reports their times and sizes.
+// Gocube processes and analyzes vintage cube draft picks.
 package main
 
 import (
