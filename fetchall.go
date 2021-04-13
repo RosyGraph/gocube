@@ -76,7 +76,11 @@ func analyzePicks(drafter string) {
 		close(ch)
 		for c := range ch {
 			cmc += c.CMC
-			for _, color := range colorID(c) {
+			colorIDs := colorID(c)
+			if len(colorIDs) == 0 {
+				colors["X"]++
+			}
+			for _, color := range colorIDs {
 				colors[color]++
 			}
 		}
