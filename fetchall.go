@@ -40,8 +40,17 @@ type Drafter struct {
 var wg sync.WaitGroup
 
 func main() {
+	drafters := []string{"Waluigi", "Jorbas", "RosyGraph"}
 	start := time.Now()
-	drafts := processDraftPicks("RosyGraph", "draftlogs")
+	for _, d := range drafters {
+		analyzePicks(d)
+	}
+	fmt.Printf("total time:\t%.2f\n", time.Since(start).Seconds())
+}
+
+func analyzePicks(drafter string) {
+	fmt.Printf("begin draft analysis for %s\n", drafter)
+	drafts := processDraftPicks(drafter, "draftlogs")
 	colors := map[string]float64{
 		"W": 0.0,
 		"U": 0.0,
@@ -65,7 +74,6 @@ func main() {
 		}
 		wg.Wait()
 		close(ch)
-		fmt.Printf("processed draft %d in %.2f\n", i+1, time.Since(draftStart).Seconds())
 		for c := range ch {
 			cmc += c.CMC
 			for _, color := range colorID(c) {
@@ -74,13 +82,13 @@ func main() {
 		}
 	}
 
-	fmt.Printf("\navg cmc:\t%.2f\n", cmc/float64(n))
+	fmt.Printf("\ndraft report for %s\n", drafter)
+	fmt.Printf("avg cmc:\t%.2f\n", cmc/float64(n))
 	fmt.Println("color preferences")
 	for _, k := range []string{"W", "U", "B", "R", "G", "X"} {
 		v := colors[k]
 		fmt.Printf("%s:\t%.2f\n", k, v/float64(n))
 	}
-	fmt.Printf("total time:\t%.2f\n", time.Since(start).Seconds())
 }
 
 func processCard(s string, ch chan Card) {
@@ -93,30 +101,27 @@ func processCard(s string, ch chan Card) {
 			if resp.StatusCode == 200 {
 				buffer, err := ioutil.ReadAll(resp.Body)
 				if err != nil {
-					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
 					continue
 				}
 
 				var cards Cards
 				err = json.Unmarshal(buffer, &cards)
 				if err != nil {
-					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
 					continue
 				}
 
 				if len(cards.CardNames) == 0 {
-					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, cardname)
 					continue
 				}
 				ch <- cards.CardNames[0]
 				resp.Close = true
 				return
-			} else {
-				// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
 			}
 		}
 	}
-	resp.Close = true
+	if resp != nil {
+		resp.Close = true
+	}
 	fmt.Printf("[ERROR]\tgiving up on %s\n", s)
 }
 
