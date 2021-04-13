@@ -37,45 +37,10 @@ type Drafter struct {
 	g    float64
 }
 
-// type Card struct {
-// name         string
-// manaCost     string
-// cmc          int
-// cardType     string `json:"type"`
-// types        []string
-// rarity       string
-// set          string
-// setName      string
-// text         string
-// artist       string
-// number       int
-// layout       string
-// multiverseid string
-// imageUrl     string
-// printings    []string
-// originalText string
-// originalType string
-// legalities   []*Legalities
-// id           string
-// }
 var wg sync.WaitGroup
 
 func main() {
 	start := time.Now()
-	/*
-	 * cardnames := []string{
-	 *     "Plains",
-	 *     "Island",
-	 *     "Swamp",
-	 *     "Mountain",
-	 *     "Forest",
-	 *     "Lightning Bolt",
-	 *     "Giant Growth",
-	 *     "Healing Salve",
-	 *     "Dark Ritual",
-	 *     "Ancestral Recall",
-	 * }
-	 */
 	drafts := processDraftPicks("RosyGraph", "draftlogs")
 	colors := map[string]float64{
 		"W": 0.0,
@@ -88,53 +53,19 @@ func main() {
 	n := 0
 	var cmc float64
 
-	for _, draft := range drafts {
+	for i, draft := range drafts {
+		draftStart := time.Now()
 		ch := make(chan Card, len(draft))
 
 		for _, cardname := range draft {
 			q := fmt.Sprintf("https://api.magicthegathering.io/v1/cards?name=%s", url.QueryEscape(cardname))
-			go func(s string) {
-				defer wg.Done()
-				var resp *http.Response
-				for i := 0; i < 5; i++ {
-					if resp, err := http.Get(s); err != nil {
-						fmt.Printf("%s: %s\n", s, err.Error())
-					} else {
-						if resp.StatusCode == 200 {
-							buffer, err := ioutil.ReadAll(resp.Body)
-							if err != nil {
-								// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
-								continue
-							}
-
-							var cards Cards
-							err = json.Unmarshal(buffer, &cards)
-							if err != nil {
-								// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
-								continue
-							}
-
-							if len(cards.CardNames) == 0 {
-								// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, cardname)
-								continue
-							}
-							ch <- cards.CardNames[0]
-							resp.Close = true
-							return
-						} else {
-							// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
-						}
-					}
-				}
-				resp.Close = true
-				fmt.Printf("[ERROR]\tgiving up on %s\n", s)
-			}(q)
+			go processCard(q, ch)
 			wg.Add(1)
 			n++
 		}
 		wg.Wait()
 		close(ch)
-		fmt.Printf("total time:\t%.2f\n", time.Since(start).Seconds())
+		fmt.Printf("processed draft %d in %.2f\n", i+1, time.Since(draftStart).Seconds())
 		for c := range ch {
 			cmc += c.CMC
 			for _, color := range colorID(c) {
@@ -143,12 +74,50 @@ func main() {
 		}
 	}
 
-	fmt.Printf("avg cmc:\t%.2f\n", cmc/float64(n))
+	fmt.Printf("\navg cmc:\t%.2f\n", cmc/float64(n))
 	fmt.Println("color preferences")
 	for _, k := range []string{"W", "U", "B", "R", "G", "X"} {
 		v := colors[k]
 		fmt.Printf("%s:\t%.2f\n", k, v/float64(n))
 	}
+	fmt.Printf("total time:\t%.2f\n", time.Since(start).Seconds())
+}
+
+func processCard(s string, ch chan Card) {
+	defer wg.Done()
+	var resp *http.Response
+	for i := 0; i < 5; i++ {
+		if resp, err := http.Get(s); err != nil {
+			fmt.Printf("%s: %s\n", s, err.Error())
+		} else {
+			if resp.StatusCode == 200 {
+				buffer, err := ioutil.ReadAll(resp.Body)
+				if err != nil {
+					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
+					continue
+				}
+
+				var cards Cards
+				err = json.Unmarshal(buffer, &cards)
+				if err != nil {
+					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
+					continue
+				}
+
+				if len(cards.CardNames) == 0 {
+					// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, cardname)
+					continue
+				}
+				ch <- cards.CardNames[0]
+				resp.Close = true
+				return
+			} else {
+				// fmt.Printf("[ERROR]\t%s (tried %d times):\n\t%s\n", s, i, resp.Status)
+			}
+		}
+	}
+	resp.Close = true
+	fmt.Printf("[ERROR]\tgiving up on %s\n", s)
 }
 
 func colorID(c Card) []string {
