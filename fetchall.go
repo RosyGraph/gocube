@@ -49,7 +49,7 @@ func main() {
 }
 
 func analyzePicks(drafter string) {
-	fmt.Printf("begin draft analysis for %s\n", drafter)
+	fmt.Printf("begin draft analysis for %s", drafter)
 	drafts := processDraftPicks(drafter, "draftlogs")
 	colors := map[string]float64{
 		"W": 0.0,
@@ -63,6 +63,7 @@ func analyzePicks(drafter string) {
 	var cmc float64
 
 	for _, draft := range drafts {
+		fmt.Print(".")
 		ch := make(chan Card, len(draft))
 
 		for _, cardname := range draft {
@@ -81,7 +82,7 @@ func analyzePicks(drafter string) {
 		}
 	}
 
-	fmt.Printf("\ndraft report for %s\n", drafter)
+	fmt.Printf("done.\ndraft report for %s\n", drafter)
 	fmt.Printf("avg cmc:\t%.2f\n", cmc/float64(n))
 	fmt.Println("color preferences")
 	for _, k := range []string{"W", "U", "B", "R", "G", "X"} {
