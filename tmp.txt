@@ -1,2 +1,0 @@
-[{https://api.magicthegathering.io/v1/cards?name="Black+Lotus" 0  unexpected end of JSON input []} {Forest 0  ({T}: Add {G}.) [G]} {Island 0  ({T}: Add {U}.) [U]} {Mountain 0  ({T}: Add {R}.) [R]} {Plains 0  ({T}: Add {W}.) [W]} {Swamp 0  ({T}: Add {B}.) [B]} {Swamp 0  ({T}: Add {B}.) [B]} {Forest 0  ({T}: Add {G}.) [G]} {Plains 0  ({T}: Add {W}.) [W]} {Island 0  ({T}: Add {U}.) [U]} {Mountain 0  ({T}: Add {R}.) [R]}]
-10.97s elapsed
