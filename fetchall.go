@@ -62,8 +62,7 @@ func analyzePicks(drafter string) {
 	n := 0
 	var cmc float64
 
-	for i, draft := range drafts {
-		draftStart := time.Now()
+	for _, draft := range drafts {
 		ch := make(chan Card, len(draft))
 
 		for _, cardname := range draft {
