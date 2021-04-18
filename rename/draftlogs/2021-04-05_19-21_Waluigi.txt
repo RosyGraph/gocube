@@ -1,0 +1,467 @@
+Event #: 1d74d950-95ad-11eb-85da-b92f6c939b0f
+Time: 20210405_013326
+Players:
+    RosyGraph
+    Jorbas
+    bot
+    bot
+    bot
+    bot
+--> Waluigi
+    bot
+
+------ undefined ------
+
+Pack 1 pick 1:
+--> Channel
+    Worn Powerstone
+    Murderous Rider // Swift End
+    Soulherder
+    Talisman of Impulse
+    Emrakul, the Aeons Torn
+    Massacre Wurm
+    Thalia, Guardian of Thraben
+    Melira, Sylvok Outcast
+    Embereth Shieldbreaker // Battle Display
+    Wooded Foothills
+    Isamaru, Hound of Konda
+    Venser, Shaper Savant
+    Godless Shrine
+    Blackcleave Cliffs
+
+Pack 1 pick 2:
+--> Natural Order
+    Phyrexian Metamorph
+    Courser of Kruphix
+    Dark Confidant
+    Primeval Titan
+    Vindicate
+    Mishra's Factory
+    Thran Dynamo
+    Rite of Flame
+    Hallowed Fountain
+    Elesh Norn, Grand Cenobite
+    Felidar Guardian
+    Magma Jet
+    Brainstorm
+
+Pack 1 pick 3:
+--> Vorinclex, Monstrous Raider
+    Wrath of God
+    Silent Clearing
+    Eidolon of the Great Revel
+    Fact or Fiction
+    Thousand-Year Storm
+    Wheel of Fortune
+    Darkslick Shores
+    Stirring Wildwood
+    Chandra, Torch of Defiance
+    Beast Within
+    Mox Diamond
+    Parallax Wave
+
+Pack 1 pick 4:
+--> Show and Tell
+    Fire // Ice
+    Lightning Helix
+    Tinker
+    Trostani Discordant
+    Assassin's Trophy
+    Splinter Twin
+    Shriekmaw
+    Kari Zev, Skyship Raider
+    Wall of Blossoms
+    The Scarab God
+    Armageddon
+
+Pack 1 pick 5:
+--> Harmonize
+    Wooded Bastion
+    Sword of Feast and Famine
+    Viscera Seer
+    Exhume
+    Makeshift Mannequin
+    Smuggler's Copter
+    Unexpectedly Absent
+    Nature's Claim
+    Ephemerate
+    Tooth and Nail
+
+Pack 1 pick 6:
+--> Consecrated Sphinx
+    Leonin Relic-Warder
+    Inverter of Truth
+    Sacred Foundry
+    Sheltered Thicket
+    Nurturing Peatland
+    Recruiter of the Guard
+    Trygon Predator
+    Thalia, Heretic Cathar
+    Murderous Redcap
+
+Pack 1 pick 7:
+--> Once Upon a Time
+    Field of the Dead
+    Selfless Spirit
+    Lightning Bolt
+    Winds of Abandon
+    Brimaz, King of Oreskos
+    Managorger Hydra
+    Volrath's Stronghold
+    Palinchron
+
+Pack 1 pick 8:
+--> Ugin, the Spirit Dragon
+    Urza, Lord High Artificer
+    Uro, Titan of Nature's Wrath
+    Force Spike
+    Council's Judgment
+    Stonecoil Serpent
+    Monastery Swiftspear
+    Walking Ballista
+
+Pack 1 pick 9:
+--> Emrakul, the Aeons Torn
+    Worn Powerstone
+    Murderous Rider // Swift End
+    Massacre Wurm
+    Embereth Shieldbreaker // Battle Display
+    Isamaru, Hound of Konda
+    Blackcleave Cliffs
+
+Pack 1 pick 10:
+--> Primeval Titan
+    Phyrexian Metamorph
+    Courser of Kruphix
+    Vindicate
+    Mishra's Factory
+    Hallowed Fountain
+
+Pack 1 pick 11:
+--> Beast Within
+    Wrath of God
+    Eidolon of the Great Revel
+    Darkslick Shores
+    Stirring Wildwood
+
+Pack 1 pick 12:
+--> The Scarab God
+    Fire // Ice
+    Assassin's Trophy
+    Shriekmaw
+
+Pack 1 pick 13:
+--> Sword of Feast and Famine
+    Wooded Bastion
+    Exhume
+
+Pack 1 pick 14:
+--> Trygon Predator
+    Murderous Redcap
+
+Pack 1 pick 15:
+--> Managorger Hydra
+
+------ undefined ------
+
+Pack 2 pick 1:
+--> Breeding Pool
+    Mana Drain
+    Mind Twist
+    Pyretic Ritual
+    Watery Grave
+    Thraben Inspector
+    Academy Ruins
+    Sylvan Library
+    Blade Splicer
+    Living Death
+    Restoration Angel
+    Yawgmoth's Will
+    Ophiomancer
+    Liliana of the Veil
+    Kiln Fiend
+
+Pack 2 pick 2:
+--> Devoted Druid
+    Vendilion Clique
+    Karn, Scion of Urza
+    Lotus Cobra
+    Kitesail Freebooter
+    Honor of the Pure
+    Kiki-Jiki, Mirror Breaker
+    Kitchen Finks
+    Mana Flare
+    Zealous Conscripts
+    Bitterblossom
+    Dark Ritual
+    Maze of Ith
+    Daze
+
+Pack 2 pick 3:
+--> Mindslaver
+    The Gitrog Monster
+    Bloodghast
+    Lava Dart
+    Garruk Relentless // Garruk, the Veil-Cursed
+    Giver of Runes
+    Knight of Autumn
+    Duskwatch Recruiter // Krallenhorde Howler
+    Figure of Destiny
+    Legion Warboss
+    Crucible of Worlds
+    Abrade
+    Glorybringer
+
+Pack 2 pick 4:
+--> Coalition Relic
+    Finale of Devastation
+    Yawgmoth's Bargain
+    Gifts Ungiven
+    Fatal Push
+    Mesmeric Fiend
+    Stoneforge Mystic
+    Precursor Golem
+    Talisman of Resilience
+    Unburial Rites
+    Mana Leak
+    Luminarch Aspirant
+
+Pack 2 pick 5:
+--> Frantic Search
+    Recurring Nightmare
+    Abbot of Keral Keep
+    Nahiri, the Harbinger
+    Jeska's Will
+    Soul-Scar Mage
+    Robber of the Rich
+    Stromkirk Noble
+    Burst Lightning
+    Wishclaw Talisman
+    Collective Brutality
+
+Pack 2 pick 6:
+--> Misty Rainforest
+    Yawgmoth, Thran Physician
+    Underworld Breach
+    Sakura-Tribe Elder
+    Lavaclaw Reaches
+    Timetwister
+    Wandering Fumarole
+    Blood Artist
+    Cathartic Reunion
+    Phantasmal Image
+
+Pack 2 pick 7:
+--> Sylvan Caryatid
+    Heartbeat of Spring
+    Fireblast
+    Deceiver Exarch
+    Bone Shredder
+    Dreadhorde Arcanist
+    Mind's Desire
+    Mulldrifter
+    Rishadan Port
+
+Pack 2 pick 8:
+--> Terastodon
+    Path to Exile
+    Kodama's Reach
+    Skyclave Apparition
+    Kinnan, Bonder Prodigy
+    Goblin Rabblemaster
+    Creeping Tar Pit
+    Talisman of Progress
+
+Pack 2 pick 9:
+--> Sylvan Library
+    Mind Twist
+    Pyretic Ritual
+    Thraben Inspector
+    Living Death
+    Ophiomancer
+    Kiln Fiend
+
+Pack 2 pick 10:
+--> Daze
+    Vendilion Clique
+    Kitesail Freebooter
+    Mana Flare
+    Zealous Conscripts
+    Bitterblossom
+
+Pack 2 pick 11:
+--> Garruk Relentless // Garruk, the Veil-Cursed
+    The Gitrog Monster
+    Lava Dart
+    Giver of Runes
+    Figure of Destiny
+
+Pack 2 pick 12:
+--> Finale of Devastation
+    Fatal Push
+    Mana Leak
+    Luminarch Aspirant
+
+Pack 2 pick 13:
+--> Wishclaw Talisman
+    Abbot of Keral Keep
+    Soul-Scar Mage
+
+Pack 2 pick 14:
+--> Blood Artist
+    Cathartic Reunion
+
+Pack 2 pick 15:
+--> Dreadhorde Arcanist
+
+------ undefined ------
+
+Pack 3 pick 1:
+--> Gilded Lotus
+    Temple Garden
+    Polukranos, World Eater
+    Daretti, Ingenious Iconoclast
+    Jace, Vryn's Prodigy // Jace, Telepath Unbound
+    Life from the Loam
+    Kuldotha Forgemaster
+    Enlightened Tutor
+    Zuran Orb
+    Golos, Tireless Pilgrim
+    Valki, God of Lies // Tibalt, Cosmic Impostor
+    Questing Beast
+    Treachery
+    Hostage Taker
+    Student of Warfare
+
+Pack 3 pick 2:
+--> Chart a Course
+    Sling-Gang Lieutenant
+    Force of Negation
+    Treasure Cruise
+    Miscalculation
+    Inquisition of Kozilek
+    Repeal
+    Braids, Cabal Minion
+    Birthing Pod
+    Stomping Ground
+    Kolaghan's Command
+    Spirit of the Labyrinth
+    Needle Spires
+    Experimental Frenzy
+
+Pack 3 pick 3:
+--> Shelldock Isle
+    Tolarian Academy
+    Declaration in Stone
+    Everflowing Chalice
+    Talisman of Creativity
+    Ulamog, the Infinite Gyre
+    Talisman of Curiosity
+    Yorion, Sky Nomad
+    Sneak Attack
+    Dismember
+    Snapcaster Mage
+    Lumbering Falls
+    Fiery Confluence
+
+Pack 3 pick 4:
+--> Black Lotus
+    Hangarback Walker
+    Marsh Flats
+    Corpse Dance
+    Flickerwisp
+    Time Spiral
+    Karn Liberated
+    Coercive Portal
+    Reanimate
+    Sphinx of the Steel Wind
+    Imperial Recruiter
+    Night's Whisper
+
+Pack 3 pick 5:
+--> Ancient Tomb
+    Volcanic Island
+    Baleful Strix
+    Sulfuric Vortex
+    Reclamation Sage
+    Bonus Round
+    Grave Titan
+    Talisman of Dominance
+    Tendrils of Agony
+    Tireless Tracker
+    Botanical Sanctum
+
+Pack 3 pick 6:
+--> Wall of Roots
+    Batterskull
+    Brazen Borrower // Petty Theft
+    Gideon, Ally of Zendikar
+    Seething Song
+    Usher of the Fallen
+    Ravenous Chupacabra
+    Sundering Titan
+    Lightning Greaves
+    Dire Fleet Daredevil
+
+Pack 3 pick 7:
+--> Chrome Mox
+    Inferno Titan
+    Palace Jailer
+    High Tide
+    Mother of Runes
+    Mana Tithe
+    Tidehollow Sculler
+    Nissa, Vastwood Seer // Nissa, Sage Animist
+    Duress
+
+Pack 3 pick 8:
+--> Nissa, Who Shakes the World
+    Raging Ravine
+    Survival of the Fittest
+    Balance
+    Plateau
+    Gideon Jura
+    Electrolyze
+    Spirebluff Canal
+
+Pack 3 pick 9:
+--> Jace, Vryn's Prodigy // Jace, Telepath Unbound
+    Life from the Loam
+    Enlightened Tutor
+    Zuran Orb
+    Valki, God of Lies // Tibalt, Cosmic Impostor
+    Questing Beast
+    Treachery
+
+Pack 3 pick 10:
+--> Force of Negation
+    Miscalculation
+    Braids, Cabal Minion
+    Stomping Ground
+    Spirit of the Labyrinth
+    Experimental Frenzy
+
+Pack 3 pick 11:
+--> Talisman of Curiosity
+    Sneak Attack
+    Dismember
+    Lumbering Falls
+    Fiery Confluence
+
+Pack 3 pick 12:
+--> Hangarback Walker
+    Marsh Flats
+    Corpse Dance
+    Imperial Recruiter
+
+Pack 3 pick 13:
+--> Talisman of Dominance
+    Sulfuric Vortex
+    Tendrils of Agony
+
+Pack 3 pick 14:
+--> Brazen Borrower // Petty Theft
+    Usher of the Fallen
+
+Pack 3 pick 15:
+--> High Tide

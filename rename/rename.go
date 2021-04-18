@@ -15,17 +15,17 @@ func main() {
 	dirs, _ := ioutil.ReadDir("draftlogs")
 	regex, _ := regexp.Compile(`\d{4}-\d\d-\d\d_\d\d-\d\d`)
 	for _, dir := range dirs {
-		path := path.Join("draftlogs", dir.Name())
+		p := path.Join("draftlogs", dir.Name())
 
-		f, err := os.Open(path)
+		f, err := os.Open(p)
 		if err != nil {
-			log.Printf("Error opening file %s: %s\n", path, err.Error())
+			log.Printf("Error opening file %s: %s\n", p, err.Error())
 		}
 		defer f.Close()
 
 		sc := bufio.NewScanner(f)
 		if err != nil {
-			log.Printf("Error opening file %s: %s\n", path, err.Error())
+			log.Printf("Error opening file %s: %s\n", p, err.Error())
 		}
 
 		var drafter string
@@ -37,6 +37,7 @@ func main() {
 		}
 		date := regex.FindString(dir.Name())
 		newName := date + "_" + drafter + ".txt"
-		fmt.Printf("%s\n\t-> renamed to: %s", dir.Name(), newName)
+		os.Rename(p, path.Join("draftlogs", newName))
+		fmt.Printf("%s\n\t-> renamed to: %s\n\n", dir.Name(), newName)
 	}
 }
