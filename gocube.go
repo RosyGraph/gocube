@@ -91,7 +91,7 @@ func analyzePicks(drafter string) {
 	fmt.Println("color preferences")
 	for _, k := range []string{"W", "U", "B", "R", "G", "X"} {
 		v := colors[k]
-		fmt.Printf("%s:\t%.2f\n", k, v/float64(n))
+		fmt.Printf("%s:\t%.2f%%\n", k, v*100.0/float64(n))
 	}
 }
 

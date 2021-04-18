@@ -1,0 +1,31 @@
+begin draft analysis for Waluigi........done.
+draft report for Waluigi
+avg cmc:	2.38
+color preferences
+W:	16.67%
+U:	30.28%
+B:	21.67%
+R:	13.61%
+G:	20.00%
+X:	22.22%
+begin draft analysis for Jorbas........done.
+draft report for Jorbas
+avg cmc:	2.45
+color preferences
+W:	20.00%
+U:	25.28%
+B:	16.94%
+R:	23.61%
+G:	12.78%
+X:	18.33%
+begin draft analysis for RosyGraph........done.
+draft report for RosyGraph
+avg cmc:	2.56
+color preferences
+W:	15.00%
+U:	29.17%
+B:	22.22%
+R:	22.50%
+G:	12.22%
+X:	19.44%
+total time:	26.78
