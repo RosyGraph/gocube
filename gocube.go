@@ -3,12 +3,15 @@ package main
 
 import (
 	"bufio"
+	"encoding/csv"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"os"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -27,7 +30,7 @@ type Drafter struct {
 var wg sync.WaitGroup
 
 func main() {
-	drafters := []string{"Waluigi", "Jorbas", "RosyGraph"}
+	drafters := []string{"Jorbas", "RosyGraph", "Waluigi"}
 	start := time.Now()
 	for _, d := range drafters {
 		analyzePicks(d)
@@ -46,10 +49,13 @@ func analyzePicks(drafter string) {
 		"G": 0.0,
 		"X": 0.0,
 	}
+	records := [][]string{
+		{"date", "W", "U", "B", "R", "G", "X"},
+	}
 	n := 0
 	var cmc float64
 
-	for _, draft := range drafts {
+	for i, draft := range drafts {
 		fmt.Print(".")
 		ch := make(chan Card, len(draft))
 
@@ -71,6 +77,16 @@ func analyzePicks(drafter string) {
 				colors[color]++
 			}
 		}
+		nf := float64(n)
+		records = append(records, []string{
+			strconv.FormatInt(int64(i), 10),
+			strconv.FormatFloat(colors["W"]*100.0/nf, 'f', 2, 64),
+			strconv.FormatFloat(colors["U"]*100.0/nf, 'f', 2, 64),
+			strconv.FormatFloat(colors["B"]*100.0/nf, 'f', 2, 64),
+			strconv.FormatFloat(colors["R"]*100.0/nf, 'f', 2, 64),
+			strconv.FormatFloat(colors["G"]*100.0/nf, 'f', 2, 64),
+			strconv.FormatFloat(colors["X"]*100.0/nf, 'f', 2, 64),
+		})
 	}
 
 	fmt.Printf("done.\ndraft report for %s\n", drafter)
@@ -79,6 +95,27 @@ func analyzePicks(drafter string) {
 	for _, k := range []string{"W", "U", "B", "R", "G", "X"} {
 		v := colors[k]
 		fmt.Printf("%s:\t%.2f%%\n", k, v*100.0/float64(n))
+	}
+
+	f, err := os.Create(drafter + ".csv")
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	w := csv.NewWriter(f)
+
+	for _, record := range records {
+		if err := w.Write(record); err != nil {
+			log.Fatalln("error writing record to csv:", err)
+		}
+	}
+
+	// Write any buffered data to the underlying writer (standard output).
+	w.Flush()
+
+	if err := w.Error(); err != nil {
+		log.Fatal(err)
 	}
 }
 

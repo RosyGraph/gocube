@@ -1,0 +1,47 @@
+---
+title: "Cube Draft Analysis"
+output: html_document
+urlcolor: blue
+---
+
+```{r include = FALSE}
+  knitr::opts_chunk$set(
+						echo = FALSE,
+						warning = FALSE,					# suppress warnings
+						message = FALSE,					# suppress messages
+						cache = FALSE,						# don't save results from last compilation
+						fig.align = "center"				# center figures
+  )
+set.seed(1)
+```
+
+```{r}
+require(lattice)
+draftplot <- function(s) {
+	filename <- paste("./", s, ".csv", sep="")
+	titlestr <- paste("Draft Preferences for ", s, sep="")
+	d <- read.csv(filename)
+	xyplot(
+		   main = titlestr,
+		   W+U+B+R+G+X~date,
+		   data = d,
+		   auto.key = list(space = "right", lines = TRUE, points = FALSE),
+		   type = "l",
+		   par.settings = list(
+							   superpose.line = list(
+													 col = c("wheat2",
+															 "cornflowerblue",
+															 "black",
+															 "firebrick2",
+															 "forestgreen",
+															 "gray")
+													 )),
+		   xlab = "Draft",
+		   ylab = "Percentage of Picks by Color ID"
+	)
+}
+draftplot("Jorbas")
+draftplot("RosyGraph")
+draftplot("Waluigi")
+```
+
